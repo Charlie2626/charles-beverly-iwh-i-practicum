@@ -14,21 +14,19 @@ const PRIVATE_APP_ACCESS = process.env.PRIVATE_APP_ACCESS;
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 app.get('/', async (req, res) => {
-    const customObjects = 'https://api.hubapi.com/crm/v3/objects/2-270021886?properties=name,year_acquired,age';
+    const customObjects = 'https://api.hubapi.com/crm/v3/objects/2-270021886?properties=name,age,year_acquired';
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
     };
     try {
         const resp = await axios.get(customObjects, { headers });
-        console.log(JSON.stringify(resp.data.results, null, 2));
-        res.send('Check your terminal');
+        const data = resp.data.results;
+        res.render('homepage', { title: 'Homepage | Integrating With HubSpot I Practicum', data });
     } catch (error) {
         console.error(error.response ? error.response.data : error);
-        res.send('Error, check your terminal');
     }
 });
-
 // TODO: ROUTE 2 - Create a new app.get route for the form to create or update new custom object data. Send this data along in the next route.
 
 // * Code for Route 2 goes here

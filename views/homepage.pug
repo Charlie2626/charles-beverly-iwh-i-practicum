@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    h1= title
+    a(href='/update-cobj') Add to this table
+    table
+      thead
+        tr
+          th Name
+          th Age
+          th Year Acquired
+      tbody
+        each record in data
+          tr
+            td= record.properties.name
+            td= record.properties.age
+            td= record.properties.year_acquired
