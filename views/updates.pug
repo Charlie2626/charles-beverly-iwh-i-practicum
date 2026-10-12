@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    h1= title
+    a(href='/') Return to the homepage
+    form(action='/update-cobj', method='POST')
+      label(for='name') Name
+      input#name(type='text', name='name', required)
+      br
+      label(for='age') Age
+      input#age(type='number', name='age', required)
+      br
+      label(for='year_acquired') Year Acquired
+      input#year_acquired(type='number', name='year_acquired', required)
+      br
+      input(type='submit', value='Create')
